@@ -51,8 +51,9 @@ export const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) =>
 
                 return (
                     <PlatformPressable
-                        key={route.name}
+                        key={route.name}                        
                         style={styles.tabBarItem}
+                        android_ripple={{ color: 'transparent' }} 
                         href={buildHref(route.name, route.params)}
                         accessibilityState={isFocused ? { selected: true } : {}}
                         accessibilityLabel={options.tabBarAccessibilityLabel}
@@ -63,7 +64,7 @@ export const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) =>
                         {
                             (route.name in icons)
                                 ? icons[route.name as IconName]({
-                                    color: isFocused ? primaryColor.trim() : greyColor
+                                    color: isFocused ? primaryColor : greyColor
                                 })
                                 : null
                         }
@@ -101,6 +102,6 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        gap: 4
+        gap: 4,        
     }
 });
