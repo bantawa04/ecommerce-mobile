@@ -1,15 +1,39 @@
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, ScrollView } from "react-native";
 import { Carousel } from "@/components/ui/Carousel";
 import { SearchInput } from "@/components/ui/SearchInput";
 import { Categories } from "@/components/ui/Categories";
+import ProductGrid from "@/components/ui/ProductGrid";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
 export default function HomeScreen() {
   return (
-    <View style={{ flex: 1, backgroundColor: 'white', gap: 10}}>
-      <SearchInput />
-      <View/>
-      {/* <Carousel /> */}
-      <Categories  />
-    </View>
+    <SafeAreaProvider>
+      <SafeAreaView style={styles.container} edges={['top']}>
+        <ScrollView style={styles.scrollView}>
+          <View style={styles.content}>
+            <SearchInput />
+            {/* <Carousel /> */}
+            <Categories />
+            <ProductGrid />
+          </View>
+        </ScrollView>
+      </SafeAreaView>
+    </SafeAreaProvider>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'white',
+  },
+  scrollView: {
+    backgroundColor: 'white',
+  },
+  content: {
+    flex: 1,
+    backgroundColor: 'white',
+    gap: 20, // Increased gap for better spacing
+    paddingBottom: 20, // Add padding at the bottom for better scrolling experience
+  },
+});
