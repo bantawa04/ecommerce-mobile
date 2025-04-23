@@ -1,4 +1,4 @@
-import { AntDesign, Feather } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
 import { useRouter, usePathname } from "expo-router";
 import { View, TouchableOpacity, StyleSheet } from "react-native";
 

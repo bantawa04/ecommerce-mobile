@@ -2,7 +2,7 @@ import { Tabs } from 'expo-router';
 import React from 'react';
 import { TabBar } from "@/components/ui/TabBar";
 import { BackButton } from '@/components/ui/BackButton';
-import { HeaderRightActions } from '@/components/ui/HeaderRightActios';
+import { HeaderRightActions } from '@/components/ui/HeaderRightActions';
 export default function TabLayout() {
   
   return (

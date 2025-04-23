@@ -6,6 +6,7 @@ export const colors = {
   white: '#FFFFFF',    // White - for backgrounds, cards
   dark: '#1F0510',     // Very dark purple - for primary text
   gray: '#6E6066',     // Muted purple-gray - for secondary text
+  background: '#FAF8F9', // Light grayish-pink - for icon backgrounds, subtle UI elements
   
   // Accent colors
   accent: '#FF9F12',   // Orange - for CTAs, highlights
