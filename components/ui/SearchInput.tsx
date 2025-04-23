@@ -1,3 +1,4 @@
+import theme from "@/constants/theme";
 import { Feather } from "@expo/vector-icons";
 import { View, StyleSheet, TextInput } from "react-native"
 
@@ -21,9 +22,9 @@ const styles = StyleSheet.create({
         marginHorizontal: 15,
         marginTop: 20,
         borderWidth: 1,
-        borderRadius: 10,
-        borderColor: "#E0E0E0",
-        backgroundColor: '#FFFFFF',
+        borderRadius: theme.borderRadius.round,
+        borderColor: "transparent",
+        backgroundColor: theme.colors.background,
         paddingHorizontal: 10,
     },
     icon: {

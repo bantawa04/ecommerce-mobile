@@ -1,8 +1,7 @@
 import React, { ReactNode } from "react";
 import { Text, PlatformPressable } from '@react-navigation/elements';
-import { View, StyleSheet, Animated } from "react-native";
+import { View, StyleSheet } from "react-native";
 import theme from "@/constants/theme";
-import { AntDesign, Feather, Octicons } from "@expo/vector-icons";
 
 interface TabBarButtonProps {
     routeName: any;
@@ -15,7 +14,6 @@ interface TabBarButtonProps {
 }
 
 export const TabBarButton = ({ 
-    routeName, 
     isFocused, 
     onPress, 
     onLongPress, 
@@ -30,10 +28,7 @@ export const TabBarButton = ({
             onPress={onPress}
             onLongPress={onLongPress}
         >
-            <View style={[
-                styles.iconContainer,
-                isFocused && styles.activeIconContainer
-            ]}>
+            <View style={styles.iconContainer}>
                 {icon && icon({ color })}
             </View>
             <Text style={[
@@ -52,6 +47,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         gap: theme.spacing.xs,
+        zIndex: 2,
+        
     },
     iconContainer: {
         width: 36,
@@ -59,9 +56,6 @@ const styles = StyleSheet.create({
         borderRadius: theme.borderRadius.round,
         alignItems: 'center',
         justifyContent: 'center',
-    },
-    activeIconContainer: {
-        backgroundColor: theme.colors.primary,
     },
     tabText: {
         fontSize: theme.fontSizes.xs,
