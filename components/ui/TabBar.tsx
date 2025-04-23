@@ -1,21 +1,22 @@
 import { View, StyleSheet } from 'react-native';
-import { useLinkBuilder, useTheme } from '@react-navigation/native';
+import { useLinkBuilder } from '@react-navigation/native';
 import { Text, PlatformPressable } from '@react-navigation/elements';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
-import { AntDesign, Feather } from '@expo/vector-icons';
+import { AntDesign, Feather, Octicons } from '@expo/vector-icons';
 import { ReactNode } from 'react';
+import theme from '@/constants/theme';
+
 export const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => {
-    const { colors } = useTheme();
     const { buildHref } = useLinkBuilder();
-    type IconName = 'index' | 'shop' | 'wishlist' | 'profile';
+    type IconName = 'index' | 'shop' | 'wishlist' | 'profile' | 'brands';
     const icons: Record<IconName, (props: { color: string }) => ReactNode> = {
         'index': ({ color }) => <AntDesign name="home" size={18} color={color} />,
         'shop': ({ color }) => <Feather name="shopping-bag" size={18} color={color} />,
         'wishlist': ({ color }) => <Feather name="heart" size={18} color={color} />,
         'profile': ({ color }) => <AntDesign name="user" size={18} color={color} />,
+        'brands': ({ color }) => <Octicons name="verified" size={18} color={color} />,
     };
-    const primaryColor = "#0891b2";
-    const greyColor = "#737373";
+
     return (
         <View style={styles.tabBar}>
             {state.routes.map((route: any, index: any) => {
@@ -26,7 +27,6 @@ export const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) =>
                         : options.title !== undefined
                             ? options.title
                             : route.name;
-
 
                 const isFocused = state.index === index;
 
@@ -51,9 +51,9 @@ export const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) =>
 
                 return (
                     <PlatformPressable
-                        key={route.name}                        
+                        key={route.name}
                         style={styles.tabBarItem}
-                        android_ripple={{ color: 'transparent' }} 
+                        android_ripple={{ color: 'transparent' }}
                         href={buildHref(route.name, route.params)}
                         accessibilityState={isFocused ? { selected: true } : {}}
                         accessibilityLabel={options.tabBarAccessibilityLabel}
@@ -61,17 +61,22 @@ export const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) =>
                         onPress={onPress}
                         onLongPress={onLongPress}
                     >
-                        {
-                            (route.name in icons)
-                                ? icons[route.name as IconName]({
-                                    color: isFocused ? primaryColor : greyColor
-                                })
-                                : null
-                        }
-                        <Text style={{
-                            color: isFocused ? primaryColor : colors.text,
-                            fontSize: 11
-                        }}>
+                        <View style={[
+                            styles.iconContainer,
+                            isFocused && styles.activeIconContainer
+                        ]}>
+                            {
+                                (route.name in icons)
+                                    ? icons[route.name as IconName]({
+                                        color: isFocused ? theme.colors.white : theme.colors.gray
+                                    })
+                                    : null
+                            }
+                        </View>
+                        <Text style={[
+                            styles.tabText,
+                            isFocused && styles.activeTabText
+                        ]}>
                             {label}
                         </Text>
                     </PlatformPressable>
@@ -88,23 +93,35 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        backgroundColor: 'white',
-        marginHorizontal: 20,
-        paddingVertical: 15,
-        borderRadius: 25,
-        borderCurve: 'continuous',
-        // Enhanced shadow for better visibility on white background
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 4 },
-        shadowRadius: 8,
-        shadowOpacity: 0.15,
-        // Add elevation for Android
-        elevation: 8
+        backgroundColor: theme.colors.white,
+        marginHorizontal: theme.spacing.md,
+        paddingVertical: theme.spacing.md,
+        borderRadius: theme.borderRadius.xl,
+        ...theme.shadows.lg
     },
     tabBarItem: {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        gap: 4,        
+        gap: theme.spacing.xs,
+    },
+    iconContainer: {
+        width: 36,
+        height: 36,
+        borderRadius: theme.borderRadius.round,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    activeIconContainer: {
+        backgroundColor: theme.colors.primary,
+    },
+    tabText: {
+        fontSize: theme.fontSizes.xs,
+        color: theme.colors.gray,
+        fontFamily: theme.fontFamily.medium,
+    },
+    activeTabText: {
+        color: theme.colors.dark,
+        fontFamily: theme.fontFamily.semiBold,
     }
 });

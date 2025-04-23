@@ -1,7 +1,7 @@
 import { Tabs } from 'expo-router';
 import React from 'react';
 import { TabBar } from "@/components/ui/TabBar";
-import { BackButton } from '@/components/ui/BackButton';
+import { HeaderLeftAction } from '@/components/ui/HeaderLeftAction';
 import { HeaderRightActions } from '@/components/ui/HeaderRightActions';
 export default function TabLayout() {
   
@@ -20,7 +20,7 @@ export default function TabLayout() {
         headerTitleAlign: 'center', // Center align the header title
         headerShadowVisible: false,
         headerLeft: () => (
-          <BackButton />
+          <HeaderLeftAction />
         ),
         headerRight: () => (
           <HeaderRightActions/>
@@ -38,6 +38,12 @@ export default function TabLayout() {
         name="shop"
         options={{
           title: 'Shop',          
+        }}
+      />
+      <Tabs.Screen
+        name="brands"
+        options={{
+          title: 'Brand',          
         }}
       />
       <Tabs.Screen
