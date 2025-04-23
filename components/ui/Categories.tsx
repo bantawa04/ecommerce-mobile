@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     },
     categoriesRow: {
         flexDirection: "row",
-        gap: 15
+        gap: 30
     },
     categoryItem: {
         alignItems: 'center',
