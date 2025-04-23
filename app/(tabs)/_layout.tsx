@@ -1,17 +1,37 @@
 import { Tabs } from 'expo-router';
 import React from 'react';
-import {TabBar} from "@/components/ui/TabBar";
-
+import { TabBar } from "@/components/ui/TabBar";
+import { BackButton } from '@/components/ui/BackButton';
+import { HeaderRightActions } from '@/components/ui/HeaderRightActios';
 export default function TabLayout() {
-
+  
   return (
     <Tabs
       tabBar={props => <TabBar {...props}/>}
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: 'white',
+        },
+        headerTitleStyle: {
+          fontSize: 16,
+          fontWeight: '500',
+          textAlign: 'center',
+        },
+        headerTitleAlign: 'center', // Center align the header title
+        headerShadowVisible: false,
+        headerLeft: () => (
+          <BackButton />
+        ),
+        headerRight: () => (
+          <HeaderRightActions/>
+        ),
+      }}
     >
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Home',          
+          title: 'Home',      
+          headerTitle:""    
         }}
       />
       <Tabs.Screen
@@ -35,3 +55,4 @@ export default function TabLayout() {
     </Tabs>
   );
 }
+

@@ -9,10 +9,10 @@ export const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) =>
     const { buildHref } = useLinkBuilder();
     type IconName = 'index' | 'shop' | 'wishlist' | 'profile';
     const icons: Record<IconName, (props: { color: string }) => ReactNode> = {
-        'index': ({ color }) => <Feather name="home" size={16} color={color} />,
-        'shop': ({ color }) => <Feather name="shopping-bag" size={16} color={color} />,
-        'wishlist': ({ color }) => <Feather name="heart" size={16} color={color} />,
-        'profile': ({ color }) => <AntDesign name="user" size={16} color={color} />,
+        'index': ({ color }) => <AntDesign name="home" size={18} color={color} />,
+        'shop': ({ color }) => <Feather name="shopping-bag" size={18} color={color} />,
+        'wishlist': ({ color }) => <Feather name="heart" size={18} color={color} />,
+        'profile': ({ color }) => <AntDesign name="user" size={18} color={color} />,
     };
     const primaryColor = "#0891b2";
     const greyColor = "#737373";
@@ -93,10 +93,13 @@ const styles = StyleSheet.create({
         paddingVertical: 15,
         borderRadius: 25,
         borderCurve: 'continuous',
-        shadowColor: 'black',
-        shadowOffset: { width: 0, height: 10 },
-        shadowRadius: 10,
-        shadowOpacity: 0.1
+        // Enhanced shadow for better visibility on white background
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 4 },
+        shadowRadius: 8,
+        shadowOpacity: 0.15,
+        // Add elevation for Android
+        elevation: 8
     },
     tabBarItem: {
         flex: 1,
