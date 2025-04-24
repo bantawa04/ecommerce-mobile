@@ -12,7 +12,7 @@ export default function HomeScreen() {
       <SafeAreaView style={styles.container} edges={['top']}>
         <ScrollView style={styles.scrollView}>
           <View style={styles.content}>
-            <SearchInput />
+            <SearchInput showFilter={false}/>
             {/* <Carousel /> */}
             <Categories />
             <ProductGrid title="Bese Sellers" />

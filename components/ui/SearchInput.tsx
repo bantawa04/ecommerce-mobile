@@ -2,10 +2,13 @@ import theme from "@/constants/theme";
 import { AntDesign, Feather } from "@expo/vector-icons";
 import { View, StyleSheet, TextInput } from "react-native"
 import { Button } from "./Button";
-import { useRouter } from "expo-router";
 import { Link } from "expo-router";
-export const SearchInput = () => {
-    const router = useRouter();
+
+interface SearchInputProps {
+    showFilter?: boolean;
+}
+export const SearchInput: React.FC<SearchInputProps> = ({ showFilter=true }) => {
+
     return (
         <View style={styles.container}>
             <View style={styles.inputContainer}>
@@ -16,11 +19,13 @@ export const SearchInput = () => {
                     placeholderTextColor="#C8C8CB"
                 />
             </View>
-            <Link href="/modal/filter" push asChild>
-                <Button style={styles.filterButton}>
-                    <AntDesign name="filter" size={18} color={theme.colors.dark} />
-                </Button>
-            </Link>
+            {showFilter &&
+                <Link href="/modal/filter" push asChild>
+                    <Button style={styles.filterButton}>
+                        <AntDesign name="filter" size={18} color={theme.colors.dark} />
+                    </Button>
+                </Link>
+            }
 
         </View>
     )
