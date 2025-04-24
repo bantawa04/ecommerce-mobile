@@ -4,6 +4,7 @@ import { SearchInput } from "@/components/ui/SearchInput";
 import { Categories } from "@/components/ui/Categories";
 import ProductGrid from "@/components/ui/ProductGrid";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import theme from "@/constants/theme";
 
 export default function HomeScreen() {
   return (
@@ -14,8 +15,8 @@ export default function HomeScreen() {
             <SearchInput />
             {/* <Carousel /> */}
             <Categories />
-            <ProductGrid />
-            <ProductGrid />
+            <ProductGrid title="Bese Sellers" />
+            <ProductGrid title="Sale"/>
           </View>
         </ScrollView>
       </SafeAreaView>
@@ -26,15 +27,15 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: theme.colors.white,
   },
   scrollView: {
-    backgroundColor: 'white',
+    backgroundColor: theme.colors.white,
   },
   content: {
     flex: 1,
-    backgroundColor: 'white',
-    gap: 20, // Increased gap for better spacing
-    paddingBottom: 20, // Add padding at the bottom for better scrolling experience
+    backgroundColor: theme.colors.white,
+    gap: theme.spacing.md,
+    paddingBottom: 20,
   },
 });

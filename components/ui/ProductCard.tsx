@@ -20,6 +20,9 @@ export const ProductCard = ({ product }: { product: Product }) => {
         />
       </View>
       <View style={styles.cardContent}>
+        <Text>
+          Brand
+        </Text>
         <Text style={styles.name} numberOfLines={2} ellipsizeMode="tail">
           {product.name}
         </Text>

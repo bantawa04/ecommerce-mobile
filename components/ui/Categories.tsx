@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     },
     heading: {
         fontSize: theme.fontSizes.lg,
-        fontWeight: "600", // Changed to numeric value
+        fontWeight: 600,
         marginBottom: theme.spacing.lg
     },
     categoriesRow: {
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
     },
     categoryText: {
         fontSize: theme.fontSizes.sm,
-        fontWeight: "500",
+        fontWeight: 500,
         textAlign: 'center'
     }
 });

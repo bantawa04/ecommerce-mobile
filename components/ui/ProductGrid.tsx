@@ -12,8 +12,11 @@ export type Product = {
   imageUrl: string;
 };
 
-// Sample product data
-const sampleProducts: Product[] = [
+
+interface ProductGridProps {
+  title: string
+}
+const products: Product[] = [
   {
     id: 1,
     name: 'Organic Essential Oil Diffuser with Natural Bamboo Base',
@@ -52,17 +55,18 @@ const sampleProducts: Product[] = [
   },
 ];
 
-// ProductGrid Component
-export const ProductGrid = ({ products = sampleProducts }: { products?: Product[] }) => {
+export const ProductGrid: React.FC<ProductGridProps> = ({ title }) => {
+
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>Best Sellers</Text>
-      <View >
-        <View style={styles.grid}>
-          {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </View>
+      <View style={styles.headingWrapper}>
+        <Text style={styles.heading}>{title}</Text>
+        <Text style={{ fontSize: theme.fontSizes.xs, color: theme.colors.dark }}>View all</Text>
+      </View>
+      <View style={styles.grid}>
+        {products.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
       </View>
     </View>
   );
@@ -71,16 +75,21 @@ export const ProductGrid = ({ products = sampleProducts }: { products?: Product[
 const styles = StyleSheet.create({
   container: {
     marginHorizontal: theme.spacing.md,
-    marginVertical: theme.spacing.sm
+    marginVertical: theme.spacing.xs
   },
   grid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
   },
+  headingWrapper: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: "space-between"
+  },
   heading: {
     fontSize: theme.fontSizes.lg,
-    fontWeight: "600", // Changed to numeric value
+    fontWeight: "600",
     marginBottom: theme.spacing.lg
   },
 });

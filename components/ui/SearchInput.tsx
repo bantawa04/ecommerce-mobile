@@ -34,6 +34,6 @@ const styles = StyleSheet.create({
         flex: 1,
         height: '100%',
         fontSize: 16,
-        color: '#1F0510',
+        color: theme.colors.dark,
     },
 });

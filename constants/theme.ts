@@ -38,15 +38,21 @@ export const fontSizes = {
 };
 
 export const fontWeights = {
-  regular: 400,
-  medium: 500,
-  semiBold: 600,
-  bold: 700,
+  regular: "400",
+  medium: "500",
+  semiBold: "600",
+  bold: "700",
 };
 
 export const fontFamily = {
-  medium: 'Poppins-Medium',
-  semiBold: 'Poppins-SemiBold',
+  thin: 'Jost-Thin',
+  thinItalic: 'Jost-ThinItalic',
+  regular: 'Jost-Regular',
+  medium: 'Jost-Medium',
+  mediumItalic: 'Jost-MediumItalic',
+  semiBold: 'Jost-SemiBold',
+  extraBold: 'Jost-ExtraBold',
+  extraBoldItalic: 'Jost-ExtraBoldItalic',
 };
 
 export const typography = {
