@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "bessentials-app",
-    "slug": "bessentials-app",
+    "slug": "beauty-essentials",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -38,6 +38,15 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "589a16a9-fdb9-4df5-8196-3015d6a4cf52"
+      }
+    },
+    "owner": "rahunn"
   }
 }
