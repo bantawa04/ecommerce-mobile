@@ -1,13 +1,26 @@
+import { Pressable, PressableProps } from "react-native";
 
-import { PlatformPressable } from '@react-navigation/elements';
+import React from "react";
 
-interface ButtonProps {
-    onPress?: () => void;
-    style: Record<string, any>;
-    children: React.ReactNode;
-}
-export const Button: React.FC<ButtonProps> = ({ onPress, style, children}) => {
-    return <PlatformPressable style={style} onPress={onPress}>
-        {children}
-    </PlatformPressable>
-};
+type ButtonProps = {
+  style: any;
+  onPress?: () => void;
+  children: React.ReactNode;
+} & PressableProps;
+
+export const Button = React.forwardRef<
+  React.ComponentRef<typeof Pressable>,
+  ButtonProps
+>(({onPress, style, children, ...rest }, ref) => {
+  return (
+    <Pressable
+      ref={ref}
+      onPress={onPress}
+      {...rest}
+    >
+ {children}
+    </Pressable>
+  );
+});
+
+Button.displayName = "Button";
