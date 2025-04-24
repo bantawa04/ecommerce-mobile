@@ -11,7 +11,7 @@ import { ThemeProvider } from '@/components/ThemeProvider';
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
-  
+
   const [loaded] = useFonts({
     'Jost-Light': require('../assets/fonts/Jost-Light.ttf'),
     'Jost-Italic': require('../assets/fonts/Jost-Italic.ttf'),
@@ -36,7 +36,15 @@ export default function RootLayout() {
       <>
         <Stack>
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen
+            name="modal"
+            options={{
+              presentation: 'modal',
+              headerShown: false,
+            }}
+          />
           <Stack.Screen name="+not-found" />
+
         </Stack>
         <StatusBar style="auto" />
       </>
