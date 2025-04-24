@@ -1,5 +1,6 @@
 import { View, Text, StyleSheet, ScrollView } from "react-native"
 import { Image } from 'expo-image';
+import theme from "@/constants/theme"; // Import the theme
 
 export const Categories = () => {
     const data = [
@@ -56,7 +57,7 @@ export const Categories = () => {
     ]
     return (
         <View style={styles.container}>
-            <Text style={styles.heading}>Category</Text>
+            <Text style={styles.heading}>Categories</Text>
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                 <View style={styles.categoriesRow}>
                     {data.map((category) => (
@@ -77,17 +78,17 @@ export const Categories = () => {
 
 const styles = StyleSheet.create({
     container: {
-        marginHorizontal: 15,
-        marginVertical: 10
+        marginHorizontal: theme.spacing.md,
+        marginVertical: theme.spacing.sm
     },
     heading: {
-        fontSize: 16,
-        fontWeight: '500',
-        marginBottom: 12
+        fontSize: theme.fontSizes.lg,
+        fontWeight: "600", // Changed to numeric value
+        marginBottom: theme.spacing.lg
     },
     categoriesRow: {
         flexDirection: "row",
-        gap: 30
+        gap: theme.spacing.lg
     },
     categoryItem: {
         alignItems: 'center',
@@ -96,12 +97,13 @@ const styles = StyleSheet.create({
     image: {
         width: 70,
         height: 70,
-        borderRadius: 10,
-        backgroundColor: '#f0f0f0',
-        marginBottom: 8
+        borderRadius: theme.borderRadius.md,
+        backgroundColor: theme.colors.background,
+        marginBottom: theme.spacing.sm
     },
     categoryText: {
-        fontSize: 14,
+        fontSize: theme.fontSizes.sm,
+        fontWeight: "500",
         textAlign: 'center'
     }
 });

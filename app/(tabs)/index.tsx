@@ -15,6 +15,7 @@ export default function HomeScreen() {
             {/* <Carousel /> */}
             <Categories />
             <ProductGrid />
+            <ProductGrid />
           </View>
         </ScrollView>
       </SafeAreaView>

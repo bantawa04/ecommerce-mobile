@@ -1,4 +1,4 @@
-import { AntDesign } from "@expo/vector-icons";
+import { AntDesign, Feather } from "@expo/vector-icons";
 import { useRouter, usePathname } from "expo-router";
 import { View, TouchableOpacity, StyleSheet, Image, Text } from "react-native";
 import theme from "@/constants/theme";
@@ -29,7 +29,7 @@ export const HeaderLeftAction = () => {
                 style={styles.iconButton}
                 onPress={() => router.back()}
             >
-               <AntDesign name="arrowleft" size={24} color="black" />
+               <Feather name="chevron-left" size={18} color={theme.colors.dark} />
             </TouchableOpacity>
         </View>
     );
@@ -41,8 +41,14 @@ const styles = StyleSheet.create({
         marginRight: 10,
     },
     iconButton: {
-        padding: 8,
-        marginLeft: 5,
+        padding: theme.spacing.sm,
+        marginLeft: theme.spacing.md,
+        backgroundColor: theme.colors.background,
+        borderRadius: theme.borderRadius.round,
+        width: 36,
+        height: 36,
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     homeHeaderContainer: {
         flexDirection: 'row',

@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 
 import { ProductCard } from './ProductCard';
+import theme from '@/constants/theme';
 
 // Product type definition
 export type Product = {
@@ -55,10 +56,13 @@ const sampleProducts: Product[] = [
 export const ProductGrid = ({ products = sampleProducts }: { products?: Product[] }) => {
   return (
     <View style={styles.container}>
-      <View style={styles.grid}>
-        {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
+      <Text style={styles.heading}>Best Sellers</Text>
+      <View >
+        <View style={styles.grid}>
+          {products.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </View>
       </View>
     </View>
   );
@@ -66,13 +70,18 @@ export const ProductGrid = ({ products = sampleProducts }: { products?: Product[
 
 const styles = StyleSheet.create({
   container: {
-    marginHorizontal: 15,
-    marginVertical: 10,
+    marginHorizontal: theme.spacing.md,
+    marginVertical: theme.spacing.sm
   },
   grid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
+  },
+  heading: {
+    fontSize: theme.fontSizes.lg,
+    fontWeight: "600", // Changed to numeric value
+    marginBottom: theme.spacing.lg
   },
 });
 

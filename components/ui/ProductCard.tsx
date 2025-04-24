@@ -2,20 +2,23 @@ import React from 'react';
 import { View, Text, StyleSheet, Pressable, Dimensions } from 'react-native';
 import { Image } from 'expo-image';
 import { Product } from './ProductGrid';
+import theme from '@/constants/theme';
 
 // Calculate item width based on screen width (2 items per row with spacing)
 const { width } = Dimensions.get('window');
-const itemWidth = (width - 50) / 2; // 50 = horizontal margins (15*2) + gap between items (20)
+const itemWidth = (width - (theme.spacing.md * 2 + theme.spacing.lg)) / 2; // Horizontal margins + gap between items
 
 export const ProductCard = ({ product }: { product: Product }) => {
   return (
     <Pressable style={styles.card}>
-      <Image
-        source={product.imageUrl}
-        style={styles.image}
-        contentFit="cover"
-        transition={200}
-      />
+      <View style={styles.imageContainer}>
+        <Image
+          source={product.imageUrl}
+          style={styles.image}
+          contentFit="cover"
+          transition={200}
+        />
+      </View>
       <View style={styles.cardContent}>
         <Text style={styles.name} numberOfLines={2} ellipsizeMode="tail">
           {product.name}
@@ -29,33 +32,37 @@ export const ProductCard = ({ product }: { product: Product }) => {
 const styles = StyleSheet.create({
   card: {
     width: itemWidth,
-    backgroundColor: 'white',
-    borderRadius: 10,
-    marginBottom: 20,
+    backgroundColor: theme.colors.white,
+    borderRadius: theme.borderRadius.lg,
+    marginBottom: theme.spacing.lg,
     overflow: 'hidden',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
+    borderWidth: 1,
+    borderColor: theme.colors.background,
+    ...theme.shadows.sm
+  },
+  imageContainer: {
+    padding: theme.spacing.xs, // Add padding between card border and image
   },
   image: {
     width: '100%',
-    height: itemWidth, // Square image
-    backgroundColor: '#f0f0f0',
+    height: itemWidth - (theme.spacing.xs * 2), // Adjust height for padding
+    borderRadius: theme.borderRadius.md, // Rounded corners for image
+    backgroundColor: theme.colors.background,
   },
   cardContent: {
-    padding: 10,
+    padding: theme.spacing.sm,
   },
   name: {
-    fontSize: 14,
-    fontWeight: '600', // semibold
-    color: '#333',
+    fontSize: theme.fontSizes.sm,
+    fontWeight: 600,
+    fontFamily: theme.fontFamily.semiBold,
+    color: theme.colors.dark,
     lineHeight: 18,
-    marginBottom: 4,
+    marginBottom: theme.spacing.xs,
   },
   price: {
-    fontSize: 12, // smaller size as requested
-    color: '#393F42', // specific color as requested
+    fontSize: theme.fontSizes.xs,
+    fontFamily: theme.fontFamily.medium,
+    color: theme.colors.gray,
   },
 });
