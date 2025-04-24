@@ -3,6 +3,7 @@ import React from 'react';
 import { TabBar } from "@/components/ui/TabBar";
 import { HeaderLeftAction } from '@/components/ui/HeaderLeftAction';
 import { HeaderRightActions } from '@/components/ui/HeaderRightActions';
+import theme from '@/constants/theme';
 export default function TabLayout() {
   
   return (
@@ -13,8 +14,8 @@ export default function TabLayout() {
           backgroundColor: 'white',
         },
         headerTitleStyle: {
-          fontSize: 16,
-          fontWeight: '500',
+          fontSize: theme.fontSizes.md,
+          fontFamily:theme.fontFamily.medium,
           textAlign: 'center',
         },
         headerTitleAlign: 'center', // Center align the header title

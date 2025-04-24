@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
         marginVertical: theme.spacing.sm
     },
     heading: {
-        fontSize: theme.fontSizes.lg,
+        fontSize: theme.fontSizes.xl,
         fontWeight: 600,
         marginBottom: theme.spacing.lg
     },

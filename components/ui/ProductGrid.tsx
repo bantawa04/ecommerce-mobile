@@ -61,7 +61,7 @@ export const ProductGrid: React.FC<ProductGridProps> = ({ title }) => {
     <View style={styles.container}>
       <View style={styles.headingWrapper}>
         <Text style={styles.heading}>{title}</Text>
-        <Text style={{ fontSize: theme.fontSizes.xs, color: theme.colors.dark }}>View all</Text>
+        <Text style={styles.viewAll}>See all</Text>
       </View>
       <View style={styles.grid}>
         {products.map((product) => (
@@ -88,10 +88,14 @@ const styles = StyleSheet.create({
     justifyContent: "space-between"
   },
   heading: {
-    fontSize: theme.fontSizes.lg,
-    fontWeight: "600",
+    fontSize: theme.fontSizes.xl,
+    fontFamily:theme.fontFamily.semiBold,
     marginBottom: theme.spacing.lg
   },
+  viewAll: {
+    fontSize: theme.fontSizes.sm, 
+    color: theme.colors.dark
+  }
 });
 
 export default ProductGrid;

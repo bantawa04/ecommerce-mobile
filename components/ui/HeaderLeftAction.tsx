@@ -1,4 +1,4 @@
-import { AntDesign, Feather } from "@expo/vector-icons";
+import { Feather } from "@expo/vector-icons";
 import { useRouter, usePathname } from "expo-router";
 import { View, TouchableOpacity, StyleSheet, Image, Text } from "react-native";
 import theme from "@/constants/theme";
@@ -54,6 +54,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         marginLeft: theme.spacing.md,
+        marginBottom: theme.spacing.xs, 
+        paddingVertical: theme.spacing.xs,
     },
     avatar: {
         width: 40,
