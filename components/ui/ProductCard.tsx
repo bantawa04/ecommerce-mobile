@@ -54,13 +54,14 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.white,
     borderRadius: theme.borderRadius.lg,
     marginBottom: theme.spacing.lg,
-    overflow: 'hidden',
-    borderWidth: 1,
-    borderColor: theme.colors.background,
-    ...theme.shadows.sm
+    shadowColor: "#000000",
+    shadowOffset: { width: 0, height: 2 },  // More noticeable shadow
+    shadowOpacity: 0.3,  // Increased opacity for visibility
+    shadowRadius: 8,
+    elevation: 5,  // Increased elevation for Android
   },
   imageContainer: {
-    padding: theme.spacing.xs,
+    padding: 6,
     position: 'relative', 
   },
   image: {
@@ -92,8 +93,8 @@ const styles = StyleSheet.create({
   },
   heartButton: {
     position: 'absolute',
-    top: theme.spacing.sm,
-    right: theme.spacing.sm,
+    top: theme.spacing.md,
+    right: theme.spacing.md,
     backgroundColor: 'rgba(255, 255, 255, 0.5)', // White with opacity
     borderRadius: theme.borderRadius.round,
     padding: 6,
@@ -102,8 +103,8 @@ const styles = StyleSheet.create({
   },
   discountBadge: {
     position: 'absolute',
-    top: theme.spacing.sm,
-    left: theme.spacing.sm,
+    top: theme.spacing.md,
+    left: theme.spacing.md,
     backgroundColor:theme.colors.primary,
     borderRadius: theme.borderRadius.lg,
     paddingHorizontal: theme.spacing.sm,
