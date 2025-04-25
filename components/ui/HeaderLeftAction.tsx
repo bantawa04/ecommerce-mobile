@@ -1,6 +1,7 @@
 import { Feather } from "@expo/vector-icons";
 import { useRouter, usePathname } from "expo-router";
-import { View, TouchableOpacity, StyleSheet, Image, Text } from "react-native";
+import { View, StyleSheet, Image, Text } from "react-native";
+import { PlatformPressable } from '@react-navigation/elements';
 import theme from "@/constants/theme";
 
 export const HeaderLeftAction = () => {
@@ -25,12 +26,12 @@ export const HeaderLeftAction = () => {
     
     return (
         <View style={styles.headerIcons}>
-            <TouchableOpacity
+            <PlatformPressable
                 style={styles.iconButton}
                 onPress={() => router.back()}
             >
                <Feather name="chevron-left" size={18} color={theme.colors.dark} />
-            </TouchableOpacity>
+            </PlatformPressable>
         </View>
     );
 };

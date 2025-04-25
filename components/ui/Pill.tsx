@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacity, Text, StyleSheet, View } from 'react-native';
+import { Text, StyleSheet, View } from 'react-native';
 import { EvilIcons } from '@expo/vector-icons';
 import theme from '@/constants/theme';
 
@@ -19,11 +19,10 @@ export const Pill: React.FC<PillProps> = ({
   style,
 }) => {
   return (
-    <TouchableOpacity
+    <PlatformPressable
       style={[
         styles.pill,
         active && styles.pillActive,
-        !showCloseIcon && { paddingRight: theme.spacing.md },
         style,
       ]}
       onPress={onPress}
@@ -37,10 +36,12 @@ export const Pill: React.FC<PillProps> = ({
       >
         {label}
       </Text>
-      {showCloseIcon && (
+      {showCloseIcon ? (
         <EvilIcons name="close" size={16} color={theme.colors.dark} />
+      ) : (        
+        <View style={{ width: 8 }} />
       )}
-    </TouchableOpacity>
+    </PlatformPressable>
   );
 };
 
@@ -48,7 +49,7 @@ const styles = StyleSheet.create({
   pill: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingVertical: theme.spacing.xs,
+    height: 28,
     paddingLeft: theme.spacing.md,
     paddingRight: theme.spacing.xs,
     borderRadius: theme.borderRadius.round,
@@ -56,9 +57,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: theme.colors.primaryLight,
     margin: theme.spacing.xs,
-    height: 32,
-    minWidth: 60,
-    justifyContent: 'center',
   },
   pillActive: {
     backgroundColor: theme.colors.primary,

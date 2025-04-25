@@ -6,7 +6,7 @@ import { Pill } from '@/components/ui/Pill';
 
 // Change from named export to default export
 export default function FilterModal() {
-  const { selectedCategories, toggleCategory, isSelected } = useFilterStore();
+  const { toggleCategory, isSelected } = useFilterStore();
   
   const categories = [
     'All', 'Face', 'Body', 'Hair', 'Lips', 'Eyes', 
@@ -58,30 +58,5 @@ const styles = StyleSheet.create({
     paddingHorizontal: theme.spacing.md,
     marginBottom: theme.spacing.lg,
   },
-  pill: {
-    paddingVertical: theme.spacing.xs,
-    paddingHorizontal: theme.spacing.md,
-    borderRadius: theme.borderRadius.round,
-    backgroundColor: theme.colors.background,
-    borderWidth: 1,
-    borderColor: theme.colors.primaryLight,
-    margin: theme.spacing.xs,
-    height: 32, 
-    minWidth: 60, 
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  pillActive: {
-    backgroundColor: theme.colors.primary,
-    borderColor: theme.colors.primary,
-  },
-  pillText: {
-    color: theme.colors.gray,
-    fontFamily: theme.fontFamily.medium,
-    fontSize: theme.fontSizes.sm,
-  },
-  pillTextActive: {
-    color: theme.colors.white,
-    fontFamily: theme.fontFamily.semiBold,
-  },
+
 });

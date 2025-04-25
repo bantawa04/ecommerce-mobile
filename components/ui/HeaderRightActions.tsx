@@ -1,14 +1,14 @@
 import { Feather } from "@expo/vector-icons";
-import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
+import { View, StyleSheet, Text } from "react-native";
 import theme from "@/constants/theme";
+import { PlatformPressable } from '@react-navigation/elements';
 
 export const HeaderRightActions = () => {
-    // Example cart count - you would get this from your state management
     const cartItemCount = 3;
-    
+
     return (
         <View style={styles.headerIcons}>
-            <TouchableOpacity
+            <PlatformPressable
                 style={styles.iconButton}
                 onPress={() => console.log('Cart pressed')}
             >
@@ -18,14 +18,14 @@ export const HeaderRightActions = () => {
                         <Text style={styles.badgeText}>{cartItemCount}</Text>
                     </View>
                 )}
-            </TouchableOpacity>
-            <TouchableOpacity
+            </PlatformPressable>
+            <PlatformPressable
                 style={styles.iconButton}
                 onPress={() => console.log('Notifications pressed')}
             >
                 <Feather name="bell" size={18} color={theme.colors.dark} />
                 <View style={styles.notificationDot} />
-            </TouchableOpacity>
+            </PlatformPressable>
         </View>
     );
 }
