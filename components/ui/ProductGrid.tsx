@@ -14,7 +14,8 @@ export type Product = {
 
 
 interface ProductGridProps {
-  title: string
+  title?: string
+  showAll?: boolean
 }
 const products: Product[] = [
   {
@@ -55,14 +56,18 @@ const products: Product[] = [
   },
 ];
 
-export const ProductGrid: React.FC<ProductGridProps> = ({ title }) => {
+export const ProductGrid: React.FC<ProductGridProps> = ({ title, showAll = true }) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.headingWrapper}>
-        <Text style={styles.heading}>{title}</Text>
-        <Text style={styles.viewAll}>See all</Text>
-      </View>
+      {title && (
+        <View style={styles.headingWrapper}>
+          <Text style={styles.heading}>{title}</Text>
+          {showAll &&
+            <Text style={styles.viewAll}>See all</Text>
+          }
+        </View>
+      )}
       <View style={styles.grid}>
         {products.map((product) => (
           <ProductCard key={product.id} product={product} />
@@ -89,11 +94,11 @@ const styles = StyleSheet.create({
   },
   heading: {
     fontSize: theme.fontSizes.xl,
-    fontFamily:theme.fontFamily.semiBold,
+    fontFamily: theme.fontFamily.semiBold,
     marginBottom: theme.spacing.lg
   },
   viewAll: {
-    fontSize: theme.fontSizes.sm, 
+    fontSize: theme.fontSizes.sm,
     color: theme.colors.dark
   }
 });

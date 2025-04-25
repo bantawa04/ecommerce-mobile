@@ -1,3 +1,4 @@
+import ProductGrid from "@/components/ui/ProductGrid";
 import { SearchInput } from "@/components/ui/SearchInput";
 import theme from "@/constants/theme";
 import { View, StyleSheet, ScrollView } from "react-native";
@@ -10,6 +11,7 @@ export default function Shop() {
         <SafeAreaView style={styles.container} edges={['top']}>
           <ScrollView style={styles.scrollView}>
             <SearchInput />
+            <ProductGrid showAll={false} />
           </ScrollView>
         </SafeAreaView>
       </SafeAreaProvider>

@@ -1,6 +1,6 @@
 import theme from "@/constants/theme";
 import { AntDesign, Feather } from "@expo/vector-icons";
-import { View, StyleSheet, TextInput } from "react-native"
+import { View, StyleSheet, TextInput, Text } from "react-native"
 import { Button } from "./Button";
 import { Link } from "expo-router";
 import { useFilterStore } from "@/store/useFilterStore";
@@ -30,17 +30,20 @@ export const SearchInput: React.FC<SearchInputProps> = ({ showFilter = true }) =
             }
         </View>
         {showFilter && selectedCategories.length > 0 && (
-            <View style={styles.categoriesContainer}>
-                {selectedCategories.map((category) => (
-                    <Pill
-                        key={category}
-                        label={category}
-                        showCloseIcon={category !== 'All'}
-                        onPress={() => toggleCategory(category)}
-                        style={styles.categoryPill}
-                    />
-                ))}
-            </View>
+            <>
+                <Text style={styles.filterLabel}>Applied Filters</Text>
+                <View style={styles.categoriesContainer}>
+                    {selectedCategories.map((category) => (
+                        <Pill
+                            key={category}
+                            label={category}
+                            showCloseIcon={category !== 'All'}
+                            onPress={() => toggleCategory(category)}
+                            style={styles.categoryPill}
+                        />
+                    ))}
+                </View>
+            </>
         )}
     </>
 }
@@ -101,8 +104,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         flexWrap: 'wrap',
         alignItems: 'center',
-        marginHorizontal: theme.spacing.md,
-        marginTop: theme.spacing.sm,
+        marginHorizontal: theme.spacing.md,        
     },
     categoryPill: {
         flexDirection: 'row',
@@ -122,5 +124,12 @@ const styles = StyleSheet.create({
         fontSize: theme.fontSizes.sm,
         fontFamily: theme.fontFamily.medium,
         marginRight: theme.spacing.xs,
-    }
+    },
+    filterLabel: {
+        fontFamily: theme.fontFamily.medium,
+        fontSize: theme.fontSizes.sm,
+        color: theme.colors.dark,
+        marginHorizontal: theme.spacing.lg,
+        marginTop: theme.spacing.md,
+    },
 });
