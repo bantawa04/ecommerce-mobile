@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, StyleSheet, View } from 'react-native';
+import { Pressable, Text, StyleSheet, View } from 'react-native';
 import { EvilIcons } from '@expo/vector-icons';
 import theme from '@/constants/theme';
 
@@ -19,14 +19,14 @@ export const Pill: React.FC<PillProps> = ({
   style,
 }) => {
   return (
-    <PlatformPressable
-      style={[
+    <Pressable
+      style={({ pressed }) => [
         styles.pill,
         active && styles.pillActive,
+        { opacity: pressed ? 0.7 : 1 },
         style,
       ]}
       onPress={onPress}
-      activeOpacity={0.7}
     >
       <Text
         style={[
@@ -41,7 +41,7 @@ export const Pill: React.FC<PillProps> = ({
       ) : (        
         <View style={{ width: 8 }} />
       )}
-    </PlatformPressable>
+    </Pressable>
   );
 };
 
