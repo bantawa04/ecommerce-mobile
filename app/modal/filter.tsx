@@ -5,7 +5,7 @@ import { useFilterStore } from '@/store/useFilterStore';
 
 // Change from named export to default export
 export default function FilterModal() {
-  const { selectedCategory, setSelectedCategory } = useFilterStore();
+  const { selectedCategories, toggleCategory, isSelected } = useFilterStore();
   
   const categories = [
     'All', 'Face', 'Body', 'Hair', 'Lips', 'Eyes', 
@@ -31,15 +31,15 @@ export default function FilterModal() {
             key={category}
             style={[
               styles.pill,
-              selectedCategory === category && styles.pillActive
+              isSelected(category) && styles.pillActive
             ]}
-            onPress={() => setSelectedCategory(category)}
+            onPress={() => toggleCategory(category)}
             activeOpacity={0.7}
           >
             <Text
               style={[
                 styles.pillText,
-                selectedCategory === category && styles.pillTextActive
+                isSelected(category) && styles.pillTextActive
               ]}
             >
               {category}

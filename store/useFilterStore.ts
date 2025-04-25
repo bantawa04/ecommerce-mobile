@@ -1,41 +1,59 @@
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
-import { StateStorage } from 'zustand/middleware';
-import { MMKV } from 'react-native-mmkv';
-
-// Create the MMKV instance
-const storage = new MMKV();
-
-// Create the Zustand storage adapter
-const zustandStorage: StateStorage = {
-  setItem: (name, value) => {
-    return storage.set(name, value);
-  },
-  getItem: (name) => {
-    const value = storage.getString(name);
-    return value ?? null;
-  },
-  removeItem: (name) => {
-    return storage.delete(name);
-  },
-};
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // Define your filter store state type
 interface FilterState {
-  selectedCategory: string;
-  setSelectedCategory: (category: string) => void;
+  selectedCategories: string[];
+  toggleCategory: (category: string) => void;
+  isSelected: (category: string) => boolean;
+  clearCategories: () => void;
 }
 
-// Create the persisted store
+// Create the persisted store with AsyncStorage
 export const useFilterStore = create<FilterState>()(
   persist(
-    (set) => ({
-      selectedCategory: 'All', // Default value
-      setSelectedCategory: (category) => set({ selectedCategory: category }),
+    (set, get) => ({
+      selectedCategories: ['All'], // Default value
+      toggleCategory: (category) => set((state) => {
+        // If "All" is selected or being selected, handle special case
+        if (category === 'All') {
+          return { selectedCategories: ['All'] };
+        }
+        
+        // Create a copy of the current selection
+        const newSelection = [...state.selectedCategories];
+        
+        // If "All" is in the current selection, remove it
+        if (newSelection.includes('All')) {
+          newSelection.splice(newSelection.indexOf('All'), 1);
+        }
+        
+        // Toggle the selected category
+        if (newSelection.includes(category)) {
+          // If category exists, remove it
+          const index = newSelection.indexOf(category);
+          newSelection.splice(index, 1);
+          
+          // If no categories left, select "All"
+          if (newSelection.length === 0) {
+            return { selectedCategories: ['All'] };
+          }
+        } else {
+          // If category doesn't exist, add it
+          newSelection.push(category);
+        }
+        
+        return { selectedCategories: newSelection };
+      }),
+      isSelected: (category) => {
+        return get().selectedCategories.includes(category);
+      },
+      clearCategories: () => set({ selectedCategories: ['All'] }),
     }),
     {
       name: 'filter-storage', // Unique name for this storage
-      storage: createJSONStorage(() => zustandStorage),
+      storage: createJSONStorage(() => AsyncStorage),
     }
   )
 );
