@@ -1,13 +1,14 @@
 import { View, Text, StyleSheet } from 'react-native';
-import { Stack } from 'expo-router';
+import { Stack, useRouter } from 'expo-router';
 import theme from '@/constants/theme';
 import { useFilterStore } from '@/store/useFilterStore';
 import { Pill } from '@/components/ui/Pill';
 import { Button } from '@/components/ui/Button';
 
 export default function FilterModal() {
-  const { toggleCategory, isSelected } = useFilterStore();
-
+  const { toggleCategory, isSelected, clearCategories } = useFilterStore();
+  const router = useRouter();
+  
   const categories = [
     'All', 'Face', 'Body', 'Hair', 'Lips', 'Eyes',
     'Nails', 'Skincare', 'Makeup', 'Fragrance', 'Tools',
@@ -38,7 +39,7 @@ export default function FilterModal() {
       </View>
       <View style={styles.buttonsContainer}>
         <Button
-          onPress={() => { }}
+          onPress={() => clearCategories()}
           variant="secondary"
           size="sm"
           radius='round'
@@ -47,7 +48,7 @@ export default function FilterModal() {
           Clear Filters
         </Button>
         <Button
-          onPress={() => { }}
+          onPress={() =>   router.back()}
           variant="primary"
           size="sm"
           radius='round'
