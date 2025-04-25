@@ -104,7 +104,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         flexWrap: 'wrap',
         alignItems: 'center',
-        marginHorizontal: theme.spacing.md,        
+        marginHorizontal: theme.spacing.md,
+        marginBottom: theme.spacing.xs, // Add a smaller bottom margin
     },
     categoryPill: {
         flexDirection: 'row',
@@ -130,6 +131,7 @@ const styles = StyleSheet.create({
         fontSize: theme.fontSizes.sm,
         color: theme.colors.dark,
         marginHorizontal: theme.spacing.lg,
-        marginTop: theme.spacing.md,
+        marginTop: theme.spacing.xs, // Reduce from md to xs
+        marginBottom: theme.spacing.xs, // Add a small bottom margin
     },
 });

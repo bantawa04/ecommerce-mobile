@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Pressable, Dimensions } from 'react-native';
 import { Image } from 'expo-image';
 import { Product } from './ProductGrid';
 import theme from '@/constants/theme';
-import { AntDesign, Feather } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 
 
 const { width } = Dimensions.get('window');

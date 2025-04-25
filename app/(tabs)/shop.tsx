@@ -9,10 +9,12 @@ export default function Shop() {
     <View style={{ flex: 1 }}>
       <SafeAreaProvider>
         <SafeAreaView style={styles.container} edges={['top']}>
-          <ScrollView style={styles.scrollView}>
+          <View style={styles.content}>
             <SearchInput />
-            <ProductGrid showAll={false} />
-          </ScrollView>
+            <ScrollView >
+              <ProductGrid showAll={false} />
+            </ScrollView>
+          </View>
         </SafeAreaView>
       </SafeAreaProvider>
     </View>
@@ -24,13 +26,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: theme.colors.white,
   },
-  scrollView: {
-    backgroundColor: theme.colors.white,
-  },
   content: {
     flex: 1,
     backgroundColor: theme.colors.white,
-    gap: theme.spacing.md,
+    gap: 1,
     paddingBottom: 20,
   },
 });
