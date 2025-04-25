@@ -1,9 +1,10 @@
 import theme from "@/constants/theme";
-import { AntDesign, EvilIcons, Feather } from "@expo/vector-icons";
-import { View, StyleSheet, TextInput, Text, TouchableOpacity } from "react-native"
+import { AntDesign, Feather } from "@expo/vector-icons";
+import { View, StyleSheet, TextInput } from "react-native"
 import { Button } from "./Button";
 import { Link } from "expo-router";
 import { useFilterStore } from "@/store/useFilterStore";
+import { Pill } from "./Pill";
 
 interface SearchInputProps {
     showFilter?: boolean;
@@ -31,17 +32,13 @@ export const SearchInput: React.FC<SearchInputProps> = ({ showFilter = true }) =
         {showFilter && selectedCategories.length > 0 && (
             <View style={styles.categoriesContainer}>
                 {selectedCategories.map((category) => (
-                    <TouchableOpacity 
-                        key={category} 
-                        style={[
-                            styles.categoryPill,
-                            category === 'All' && { paddingRight: theme.spacing.md }
-                        ]}
+                    <Pill
+                        key={category}
+                        label={category}
+                        showCloseIcon={category !== 'All'}
                         onPress={() => toggleCategory(category)}
-                    >
-                        <Text style={styles.categoryText}>{category}</Text>
-                        {category !== 'All' && <EvilIcons name="close" size={theme.fontSizes.xs} color={theme.colors.dark} />}
-                    </TouchableOpacity>
+                        style={styles.categoryPill}
+                    />
                 ))}
             </View>
         )}
@@ -118,7 +115,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: theme.colors.primaryLight,
         margin: theme.spacing.xs,
-        height: 28,
+        height: 28, // Override the default height for search input pills
     },
     categoryText: {
         color: theme.colors.dark,

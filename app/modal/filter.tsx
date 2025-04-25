@@ -1,7 +1,8 @@
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { Stack } from 'expo-router';
 import theme from '@/constants/theme';
 import { useFilterStore } from '@/store/useFilterStore';
+import { Pill } from '@/components/ui/Pill';
 
 // Change from named export to default export
 export default function FilterModal() {
@@ -27,24 +28,12 @@ export default function FilterModal() {
       <Text style={styles.heading}>Category</Text>
       <View style={styles.pillsContainer}>
         {categories.map((category) => (
-          <TouchableOpacity
+          <Pill
             key={category}
-            style={[
-              styles.pill,
-              isSelected(category) && styles.pillActive
-            ]}
+            label={category}
+            active={isSelected(category)}
             onPress={() => toggleCategory(category)}
-            activeOpacity={0.7}
-          >
-            <Text
-              style={[
-                styles.pillText,
-                isSelected(category) && styles.pillTextActive
-              ]}
-            >
-              {category}
-            </Text>
-          </TouchableOpacity>
+          />
         ))}
       </View>
     </View>
